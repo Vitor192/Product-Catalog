@@ -1,40 +1,47 @@
-# 📦 Product Catalog & Shopping Cart — Microsserviços com Spring Boot
+# ☁️ Product Catalog & Shopping Cart — Microsserviços com Spring Boot + Spring Cloud
 
-> **Projetos de Microsserviços em Kotlin/Java com Spring Boot e Docker**  
-> Dois microserviços construídos para gerenciar produtos e carrinhos de compras.  
-> Tecnologias principais: **Spring Boot**, **Elasticsearch**, **Redis**, **Docker**, **Kotlin/Java**
+> **Arquitetura de Microsserviços em Kotlin/Java com Spring Cloud e Docker**  
+> Dois microserviços independentes, integrados e prontos para escalabilidade, utilizando **Spring Boot**, **Spring Cloud**, **Elasticsearch**, **Redis** e **Docker**.  
+> Tecnologias principais: **Kotlin/Java 17**, **Spring Boot**, **Spring Cloud**, **Docker**
 
 ---
 
 ## 🎯 Objetivo dos Projetos
-Estes projetos têm como finalidade demonstrar na prática como implementar **arquitetura de microsserviços**, com serviços independentes, armazenamento especializado e containerização:  
-
-1. **Product Catalog** — Gerencia produtos e realiza operações CRUD com **Elasticsearch**.  
-2. **Shopping Cart** — Gerencia carrinhos de compras, armazenando dados em **Redis** e pronto para integração com outros serviços.
+Implementar, de forma prática, uma arquitetura de microsserviços utilizando **Spring Cloud**, explorando:
+- **Comunicação entre serviços**
+- **Configuração centralizada**
+- **Descoberta de serviços**
+- **Armazenamento especializado para cada domínio**
+- **Containerização com Docker**
 
 ---
 
 ## 🛠️ Tecnologias Utilizadas
-- Kotlin / Java 17
-- Spring Boot
-- Spring Web
-- Spring Data Elasticsearch (Product Catalog)
-- Spring Data Redis (Shopping Cart)
-- Spring Boot Actuator
-- Docker / Docker Compose
-- Lombok (redução de boilerplate)
+- **Kotlin / Java 17**
+- **Spring Boot**
+- **Spring Cloud**:
+- **API Gateway
+- **Service Discovery (Eureka)
+- **Config Server
+- **Spring Web**
+- **Spring Data Elasticsearch** (Product Catalog)
+- **Spring Data Redis** (Shopping Cart)
+- **Spring Boot Actuator**
+- **Docker / Docker Compose**
+- **Lombok**
 
 ---
 
-## 📂 Estrutura dos Projetos
+## 📂 Estrutura dos Serviços
 
 ### 1️⃣ Product Catalog
-- **Responsabilidade:** CRUD de produtos com persistência no **Elasticsearch**
-- **Configurações importantes:**  
-  - `ElasticSearchConfig.kt` — configuração do Elasticsearch  
-  - `ProductRepository.kt` — repositório para produtos  
-- **Dados armazenados:** Usando **Ladiscsanche**  
-
+- **Função:** CRUD de produtos com persistência no **Elasticsearch**
+- **Principais pontos:**
+  - Configuração personalizada do Elasticsearch (`ElasticSearchConfig.kt`)
+  - Repositório dedicado para produtos (`ProductRepository.kt`)
+  - Integração com **Spring Cloud** para registro e descoberta de serviço
+  - Dados armazenados usando **Ladiscsanche**
+ 
 src/
 ├── main/
 │ ├── java/com/example/productcatalog
@@ -44,18 +51,15 @@ src/
 │ └── resources/
 │ └── application.yml
 
-
-
----
-
 ### 2️⃣ Shopping Cart
-- **Responsabilidade:** Gerenciar carrinhos de compras com dados em **Redis**
-- **Configurações importantes:**  
-  - `RedisConfig.kt` — configuração do Redis  
-  - `CartRepository.kt` — repositório de carrinho  
-- **Containerização:** Dockerfile incluso  
-
-src/
+- **Função:** Gerenciar carrinhos de compras usando **Redis** como armazenamento
+- **Principais pontos:**
+  - Configuração do Redis (`RedisConfig.kt`)
+  - Repositório do carrinho (`CartRepository.kt`)
+  - Integração com **Spring Cloud** para registro e descoberta de serviço
+  - Containerização pronta com **Dockerfile**
+ 
+    src/
 ├── main/
 │ ├── java/com/example/shoppingcart
 │ │ ├── config/RedisConfig.kt
@@ -63,7 +67,6 @@ src/
 │ │ └── model/Cart.kt
 │ └── resources/
 │ └── application.yml
-Dockerfile
 
 
 
@@ -71,39 +74,30 @@ Dockerfile
 
 ## 🚀 Como Executar
 
-### Product Catalog
-**Pré-requisitos:** Elasticsearch rodando localmente ou via Docker  
+### Pré-requisitos
+- **Docker** e **Docker Compose** instalados
+- **JDK 17** instalado
 
+---
+
+### Subindo com Docker Compose (Recomendado)
 ```bash
-# Clonar repositório
-git clone https://github.com/<seu-usuario>/product-catalog.git
-cd product-catalog
+# Clonar o repositório
+git clone https://github.com/<seu-usuario>/microservices-projects.git
+cd microservices-projects
 
-# Rodar o projeto
+# Subir todos os serviços com Docker Compose
+docker compose up --build
+
+Product Catalog
+
 ./gradlew bootRun
 
-# Ou com Docker
-docker build -t product-catalog .
-docker run -p 8080:8080 product-catalog
 
 Shopping Cart
 
-Pré-requisitos: Redis rodando localmente ou via Docker
-
-
-# Clonar repositório
-git clone https://github.com/<seu-usuario>/shopping-cart.git
-cd shopping-cart
-
-# Rodar o projeto
-./gradlew bootRun
-
-# Ou com Docker
-docker build -t shopping-cart .
-docker run -p 8081:8081 shopping-cart
-
-# Caso queira rodar Redis via Docker
 docker run -d -p 6379:6379 redis
+./gradlew bootRun
 
 🔗 Endpoints Principais
 Product Catalog
@@ -130,8 +124,12 @@ POST /cart/{userId}/checkout — Finalizar compra
 
 📌 Observações
 
-Projetos preparados para arquitetura de microsserviços.
+Arquitetura baseada em Spring Cloud para escalabilidade e resiliência.
 
-Integração futura entre Product Catalog e Shopping Cart via APIs REST.
+Uso de Service Discovery, API Gateway e Config Server.
 
-Recomendado uso de Docker Compose para orquestrar múltiplos serviços.
+Possível integração futura com serviços de Orders e Inventory.
+
+Recomendado uso de Docker Compose para orquestrar todos os serviços.
+
+
