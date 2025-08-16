@@ -16,14 +16,14 @@ Desenvolvido com 💛 usando **Java Spring Boot** e seguindo boas práticas de a
 ---
 
 ## 🛠 Tecnologias Utilizadas
-| Tecnologia | Versão | Função |
-|------------|--------|--------|
-| ☕ **Java** | 17+    | Linguagem principal |
-| 🚀 **Spring Boot** | 3.x | Framework backend |
-| 📦 **Maven** | - | Gerenciador de dependências |
-| 🗄 **JPA / Hibernate** | - | ORM para banco de dados |
-| 🐬 **MySQL/PostgreSQL** | - | Banco de dados relacional |
-| 📦 **Docker** (opcional) | - | Containerização |
+| Tecnologia | Função |
+|------------|--------|
+| ☕ **Java 17** | Linguagem principal |
+| 🚀 **Spring Boot** | Framework backend |
+| ☁️ **Spring Cloud** | Integração entre microsserviços |
+| 🗄 **PostgreSQL** (ou MySQL, se for o caso) | Banco de dados relacional |
+| 📦 **Maven** | Gerenciador de dependências |
+| 🐳 **Docker** (opcional) | Containerização |
 
 ---
 
